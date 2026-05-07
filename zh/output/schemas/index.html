@@ -1,0 +1,6682 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An intelligent Python code quality analyzer with CFG-based static analysis">
+      
+      
+        <meta name="author" content="ludo-technologies">
+      
+      
+        <link rel="canonical" href="https://ludo-technologies.github.io/pyscn/zh/output/schemas/">
+      
+      
+        <link rel="prev" href="../html-report/">
+      
+      
+        <link rel="next" href="../health-score/">
+      
+      
+        
+          <link rel="alternate" href="../../../output/schemas/" hreflang="en">
+        
+          <link rel="alternate" href="../../../ja/output/schemas/" hreflang="ja">
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>结构 - pyscn</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../" title="pyscn" class="md-header__button md-logo" aria-label="pyscn" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            pyscn
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              结构
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../output/schemas/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../../ja/output/schemas/" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ludo-technologies/pyscn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ludo-technologies/pyscn
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  入门
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../rules/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  规则
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cli/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CLI 参考
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../configuration/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  输出格式
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../integrations/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  集成
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  常见问题
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="pyscn" class="md-nav__button md-logo" aria-label="pyscn" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    pyscn
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ludo-technologies/pyscn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ludo-technologies/pyscn
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    入门
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速开始
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../rules/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    规则
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    规则
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    不可达代码
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    不可达代码
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/unreachable-after-return/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unreachable-after-return
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/unreachable-after-raise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unreachable-after-raise
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/unreachable-after-break/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unreachable-after-break
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/unreachable-after-continue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unreachable-after-continue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/unreachable-after-infinite-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unreachable-after-infinite-loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/unreachable-branch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unreachable-branch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    重复代码
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    重复代码
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/duplicate-code-identical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    duplicate-code-identical
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/duplicate-code-renamed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    duplicate-code-renamed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/duplicate-code-modified/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    duplicate-code-modified
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/duplicate-code-semantic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    duplicate-code-semantic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    复杂度
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    复杂度
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/high-cyclomatic-complexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    high-cyclomatic-complexity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    类设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    类设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/high-class-coupling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    high-class-coupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/low-class-cohesion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    low-class-cohesion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    依赖注入
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    依赖注入
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/too-many-constructor-parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    too-many-constructor-parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/global-state-dependency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    global-state-dependency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/module-variable-dependency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    module-variable-dependency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/singleton-pattern-dependency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    singleton-pattern-dependency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/concrete-type-hint-dependency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    concrete-type-hint-dependency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/concrete-instantiation-dependency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    concrete-instantiation-dependency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/service-locator-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    service-locator-pattern
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块结构
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    模块结构
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/circular-import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    circular-import
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/deep-import-chain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    deep-import-chain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/layer-violation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    layer-violation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/low-package-cohesion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    low-package-cohesion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/single-responsibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    single-responsibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模拟数据
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    模拟数据
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/mock-keyword-in-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mock-keyword-in-code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/mock-domain-in-string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mock-domain-in-string
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/mock-email-address/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mock-email-address
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/placeholder-phone-number/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    placeholder-phone-number
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/placeholder-uuid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    placeholder-uuid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/placeholder-comment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    placeholder-comment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/repetitive-string-literal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    repetitive-string-literal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/test-credential-in-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    test-credential-in-code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../cli/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI 参考
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CLI 参考
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/analyze/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    analyze
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    check
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/init/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    init
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    version
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../configuration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置文件格式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    输出格式
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    输出格式
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTML 报告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    结构
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        稳定性约定
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyscn-analyze" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶层结构（pyscn analyze）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        summary 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="summary 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文件统计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分析器状态标志
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复杂度指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        死代码指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        克隆指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cbo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CBO 指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lcom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LCOM 指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        依赖指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模拟数据指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        健康评分
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        complexity 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="complexity 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functions-functioncomplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions[] 元素（FunctionComplexity）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexitymetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ComplexityMetrics 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-complexitysummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary 对象（ComplexitySummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw_metrics-rawmetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        raw_metrics[] 元素（RawMetrics）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dead_code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dead_code 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dead_code 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#files-filedeadcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        files[] 元素（FileDeadCode）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filesfunctions-functiondeadcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        files[].functions[] 元素（FunctionDeadCode）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filesfunctionsfindings-deadcodefinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        files[].functions[].findings[] 元素（DeadCodeFinding）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deadcodelocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeadCodeLocation 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-deadcodesummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        summary 对象（DeadCodeSummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clone 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="clone 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clones-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clones[] 元素（Clone）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clonelocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CloneLocation 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clone_pairs-clonepair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clone_pairs[] 元素（ClonePair）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clone_groups-clonegroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clone_groups[] 元素（CloneGroup）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistics-clonestatistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        statistics 对象（CloneStatistics）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cbo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cbo 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="cbo 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classes-classcoupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes[] 元素（ClassCoupling）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cbometrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CBOMetrics 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-cbosummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary 对象（CBOSummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lcom_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lcom 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="lcom 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classes-classcohesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes[] 元素（ClassCohesion）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lcommetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LCOMMetrics 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-lcomsummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary 对象（LCOMSummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        system 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="system 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary-systemanalysissummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary 对象（SystemAnalysisSummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencyanalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DependencyAnalysis 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moduledependencymetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModuleDependencyMetrics 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circulardependencyanalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CircularDependencyAnalysis 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couplinganalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CouplingAnalysis 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architectureanalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ArchitectureAnalysis 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suggestions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        suggestions 数组
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV 模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CSV 模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyscn-analyze-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyscn analyze --csv
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        时间戳和版本信息
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        调用各格式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../health-score/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    健康评分
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../integrations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集成
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    集成
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/ci-cd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/python-packaging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 打包
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        稳定性约定
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyscn-analyze" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶层结构（pyscn analyze）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        summary 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="summary 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        文件统计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分析器状态标志
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复杂度指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        死代码指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        克隆指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cbo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CBO 指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lcom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LCOM 指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        依赖指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模拟数据指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        健康评分
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        complexity 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="complexity 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functions-functioncomplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions[] 元素（FunctionComplexity）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexitymetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ComplexityMetrics 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-complexitysummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary 对象（ComplexitySummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw_metrics-rawmetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        raw_metrics[] 元素（RawMetrics）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dead_code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dead_code 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dead_code 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#files-filedeadcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        files[] 元素（FileDeadCode）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filesfunctions-functiondeadcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        files[].functions[] 元素（FunctionDeadCode）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filesfunctionsfindings-deadcodefinding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        files[].functions[].findings[] 元素（DeadCodeFinding）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deadcodelocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeadCodeLocation 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-deadcodesummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        summary 对象（DeadCodeSummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clone 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="clone 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clones-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clones[] 元素（Clone）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clonelocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CloneLocation 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clone_pairs-clonepair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clone_pairs[] 元素（ClonePair）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clone_groups-clonegroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clone_groups[] 元素（CloneGroup）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistics-clonestatistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        statistics 对象（CloneStatistics）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cbo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cbo 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="cbo 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classes-classcoupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes[] 元素（ClassCoupling）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cbometrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CBOMetrics 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-cbosummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary 对象（CBOSummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lcom_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lcom 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="lcom 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classes-classcohesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes[] 元素（ClassCohesion）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lcommetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LCOMMetrics 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-lcomsummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary 对象（LCOMSummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        system 对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="system 对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#summary-systemanalysissummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary 对象（SystemAnalysisSummary）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencyanalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DependencyAnalysis 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moduledependencymetrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModuleDependencyMetrics 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circulardependencyanalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CircularDependencyAnalysis 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couplinganalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CouplingAnalysis 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architectureanalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ArchitectureAnalysis 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suggestions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        suggestions 数组
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV 模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CSV 模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyscn-analyze-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pyscn analyze --csv
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        时间戳和版本信息
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        调用各格式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    首页
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    输出格式
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/ludo-technologies/pyscn/edit/main/website/docs/zh/output/schemas.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">输出模式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>本规范定义了 pyscn 生成的 JSON、YAML 和 CSV 输出的确切结构。此处记录的所有字段名称、类型和语义在同一主版本内的补丁版本之间保持稳定。</p>
+<h2 id="_2">稳定性约定<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>保证</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>稳定</td>
+<td>字段名称、字段类型、字段语义、枚举值</td>
+</tr>
+<tr>
+<td>可能变更</td>
+<td>对象内的字段顺序、数组元素的顺序、新字段的添加</td>
+</tr>
+<tr>
+<td>破坏性变更</td>
+<td>字段的删除或重命名、字段类型的更改、枚举值的删除</td>
+</tr>
+</tbody>
+</table>
+<p>破坏性变更仅限于主版本升级。使用方必须忽略未知字段。</p>
+<!-- Field naming note: in `pyscn analyze` JSON/YAML, nested analyzer objects (`complexity`, `cbo`, `lcom`, `system`) use Go-style PascalCase field names because their response structs do not carry JSON tags. Top-level keys, `dead_code`, `clone`, `suggestions`, and `summary` use snake_case. -->
+
+<h2 id="pyscn-analyze">顶层结构（<code>pyscn analyze</code>）<a class="headerlink" href="#pyscn-analyze" title="Permanent link">&para;</a></h2>
+<p>JSON 和 YAML 输出序列化 <code>domain/analyze.go</code> 中定义的 <code>AnalyzeResponse</code> Go 结构体。顶层键为：</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;complexity&quot;</span><span class="p">:</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ComplexityResponse, present when enabled */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;dead_code&quot;</span><span class="p">:</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="cm">/* DeadCodeResponse, present when enabled */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;clone&quot;</span><span class="p">:</span><span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="cm">/* CloneResponse, present when enabled */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;cbo&quot;</span><span class="p">:</span><span class="w">           </span><span class="p">{</span><span class="w"> </span><span class="cm">/* CBOResponse, present when enabled */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">&quot;lcom&quot;</span><span class="p">:</span><span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="cm">/* LCOMResponse, present when enabled */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="cm">/* SystemAnalysisResponse, present when deps/arch enabled */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">&quot;mock_data&quot;</span><span class="p">:</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="cm">/* MockDataResponse, present when enabled */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">&quot;suggestions&quot;</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="w"> </span><span class="cm">/* Suggestion array, omitted when empty */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="cm">/* AnalyzeSummary, always present */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">&quot;generated_at&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;2026-04-14T10:18:23Z&quot;</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">&quot;duration_ms&quot;</span><span class="p">:</span><span class="w">   </span><span class="mi">2347</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w">       </span><span class="s2">&quot;0.14.0&quot;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+<th>稳定性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>complexity</code></td>
+<td>object | absent</td>
+<td>复杂度分析运行时存在。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>dead_code</code></td>
+<td>object | absent</td>
+<td>死代码分析运行时存在。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>clone</code></td>
+<td>object | absent</td>
+<td>克隆检测运行时存在。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>cbo</code></td>
+<td>object | absent</td>
+<td>CBO 分析运行时存在。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>lcom</code></td>
+<td>object | absent</td>
+<td>LCOM 分析运行时存在。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>system</code></td>
+<td>object | absent</td>
+<td>依赖或架构分析运行时存在。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>mock_data</code></td>
+<td>object | absent</td>
+<td>模拟数据检测运行时存在。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>suggestions</code></td>
+<td>array | absent</td>
+<td>衍生建议。为空时省略。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>summary</code></td>
+<td>object</td>
+<td>始终存在。见 <a href="#summary-object"><code>summary</code></a>。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>generated_at</code></td>
+<td>string (RFC 3339)</td>
+<td>分析完成时间。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>duration_ms</code></td>
+<td>integer</td>
+<td>总分析耗时（毫秒）。</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>pyscn 语义版本号。</td>
+<td>稳定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary"><code>summary</code> 对象<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>对应 <code>domain.AnalyzeSummary</code>。当对应分析器未启用时，所有数值计数器默认为 <code>0</code>。所有字段始终存在。</p>
+<h3 id="_3">文件统计<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>total_files</code></td>
+<td>integer</td>
+<td>发现的 Python 文件数。</td>
+</tr>
+<tr>
+<td><code>analyzed_files</code></td>
+<td>integer</td>
+<td>成功分析的文件数。</td>
+</tr>
+<tr>
+<td><code>skipped_files</code></td>
+<td>integer</td>
+<td>因解析错误或过滤器跳过的文件数。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">分析器状态标志<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>complexity_enabled</code></td>
+<td>boolean</td>
+<td>复杂度分析产生结果时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>dead_code_enabled</code></td>
+<td>boolean</td>
+<td>死代码分析产生结果时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>clone_enabled</code></td>
+<td>boolean</td>
+<td>克隆检测产生结果时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>cbo_enabled</code></td>
+<td>boolean</td>
+<td>CBO 分析产生结果时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>lcom_enabled</code></td>
+<td>boolean</td>
+<td>LCOM 分析产生结果时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>deps_enabled</code></td>
+<td>boolean</td>
+<td>依赖分析产生结果时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>arch_enabled</code></td>
+<td>boolean</td>
+<td>架构验证产生结果时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>mock_data_enabled</code></td>
+<td>boolean</td>
+<td>模拟数据检测产生结果时为 <code>true</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">复杂度指标<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>total_functions</code></td>
+<td>integer</td>
+<td>分析的函数总数。</td>
+</tr>
+<tr>
+<td><code>average_complexity</code></td>
+<td>number</td>
+<td>平均圈复杂度。无函数时为 <code>0</code>。</td>
+</tr>
+<tr>
+<td><code>high_complexity_count</code></td>
+<td>integer</td>
+<td>复杂度 &gt; 10（中等阈值）的函数数。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">死代码指标<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dead_code_count</code></td>
+<td>integer</td>
+<td>发现总数。</td>
+</tr>
+<tr>
+<td><code>critical_dead_code</code></td>
+<td>integer</td>
+<td>严重性为 <code>critical</code> 的发现数。</td>
+</tr>
+<tr>
+<td><code>warning_dead_code</code></td>
+<td>integer</td>
+<td>严重性为 <code>warning</code> 的发现数。</td>
+</tr>
+<tr>
+<td><code>info_dead_code</code></td>
+<td>integer</td>
+<td>严重性为 <code>info</code> 的发现数。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">克隆指标<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>total_clones</code></td>
+<td>integer</td>
+<td>被识别为克隆的独立代码片段数。</td>
+</tr>
+<tr>
+<td><code>clone_pairs</code></td>
+<td>integer</td>
+<td>克隆对的数量。</td>
+</tr>
+<tr>
+<td><code>clone_groups</code></td>
+<td>integer</td>
+<td>克隆组的数量。</td>
+</tr>
+<tr>
+<td><code>code_duplication_percentage</code></td>
+<td>number</td>
+<td>估计的代码重复率，<code>0</code>–<code>100</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cbo">CBO 指标<a class="headerlink" href="#cbo" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cbo_classes</code></td>
+<td>integer</td>
+<td>分析的类总数。</td>
+</tr>
+<tr>
+<td><code>high_coupling_classes</code></td>
+<td>integer</td>
+<td>CBO &gt; 7 的类数。</td>
+</tr>
+<tr>
+<td><code>medium_coupling_classes</code></td>
+<td>integer</td>
+<td>3 &lt; CBO ≤ 7 的类数。</td>
+</tr>
+<tr>
+<td><code>average_coupling</code></td>
+<td>number</td>
+<td>平均 CBO 值。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lcom">LCOM 指标<a class="headerlink" href="#lcom" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lcom_classes</code></td>
+<td>integer</td>
+<td>分析的类总数。</td>
+</tr>
+<tr>
+<td><code>high_lcom_classes</code></td>
+<td>integer</td>
+<td>LCOM4 &gt; 5 的类数。</td>
+</tr>
+<tr>
+<td><code>medium_lcom_classes</code></td>
+<td>integer</td>
+<td>2 &lt; LCOM4 ≤ 5 的类数。</td>
+</tr>
+<tr>
+<td><code>average_lcom</code></td>
+<td>number</td>
+<td>平均 LCOM4 值。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">依赖指标<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deps_total_modules</code></td>
+<td>integer</td>
+<td>分析的模块总数。</td>
+</tr>
+<tr>
+<td><code>deps_modules_in_cycles</code></td>
+<td>integer</td>
+<td>参与至少一个循环依赖的模块数。</td>
+</tr>
+<tr>
+<td><code>deps_max_depth</code></td>
+<td>integer</td>
+<td>最长依赖链长度。</td>
+</tr>
+<tr>
+<td><code>deps_main_sequence_deviation</code></td>
+<td>number</td>
+<td>与 Martin 主序列的平均偏差，<code>0</code>–<code>1</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">架构指标<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arch_compliance</code></td>
+<td>number</td>
+<td>架构合规率，<code>0</code>–<code>1</code>。<code>1.0</code> = 完全合规。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">模拟数据指标<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mock_data_count</code></td>
+<td>integer</td>
+<td>模拟数据发现总数。</td>
+</tr>
+<tr>
+<td><code>mock_data_error_count</code></td>
+<td>integer</td>
+<td>error 严重性的发现数。</td>
+</tr>
+<tr>
+<td><code>mock_data_warning_count</code></td>
+<td>integer</td>
+<td>warning 严重性的发现数。</td>
+</tr>
+<tr>
+<td><code>mock_data_info_count</code></td>
+<td>integer</td>
+<td>info 严重性的发现数。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">健康评分<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>health_score</code></td>
+<td>integer</td>
+<td>综合评分，<code>0</code>–<code>100</code>。见<a href="../health-score/">健康评分</a>。</td>
+</tr>
+<tr>
+<td><code>grade</code></td>
+<td>string</td>
+<td>等级字母。取值：<code>A</code>、<code>B</code>、<code>C</code>、<code>D</code>、<code>F</code>、<code>N/A</code>。</td>
+</tr>
+<tr>
+<td><code>complexity_score</code></td>
+<td>integer</td>
+<td>分类评分，<code>0</code>–<code>100</code>。</td>
+</tr>
+<tr>
+<td><code>dead_code_score</code></td>
+<td>integer</td>
+<td>分类评分，<code>0</code>–<code>100</code>。</td>
+</tr>
+<tr>
+<td><code>duplication_score</code></td>
+<td>integer</td>
+<td>分类评分，<code>0</code>–<code>100</code>。</td>
+</tr>
+<tr>
+<td><code>coupling_score</code></td>
+<td>integer</td>
+<td>分类评分，<code>0</code>–<code>100</code>。</td>
+</tr>
+<tr>
+<td><code>cohesion_score</code></td>
+<td>integer</td>
+<td>分类评分，<code>0</code>–<code>100</code>。</td>
+</tr>
+<tr>
+<td><code>dependency_score</code></td>
+<td>integer</td>
+<td>分类评分，<code>0</code>–<code>100</code>。</td>
+</tr>
+<tr>
+<td><code>architecture_score</code></td>
+<td>integer</td>
+<td>分类评分，<code>0</code>–<code>100</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="complexity"><code>complexity</code> 对象<a class="headerlink" href="#complexity" title="Permanent link">&para;</a></h2>
+<p>对应 <code>domain.ComplexityResponse</code>。嵌套字段名为 Go PascalCase。</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;Functions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="cm">/* FunctionComplexity array */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;Summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ComplexitySummary */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;raw_metrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="cm">/* RawMetrics array, present when computed */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;raw_metrics_summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* RawMetricsSummary, present when computed */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;Warnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&quot;GeneratedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-14T10:18:23Z&quot;</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.14.0&quot;</span><span class="p">,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">&quot;Config&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="functions-functioncomplexity"><code>Functions[]</code> 元素（<code>FunctionComplexity</code>）<a class="headerlink" href="#functions-functioncomplexity" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Name</code></td>
+<td>string</td>
+<td>函数名。模块级代码为 <code>__main__</code>。</td>
+</tr>
+<tr>
+<td><code>FilePath</code></td>
+<td>string</td>
+<td>源文件路径。</td>
+</tr>
+<tr>
+<td><code>StartLine</code></td>
+<td>integer</td>
+<td>从 1 开始的起始行。</td>
+</tr>
+<tr>
+<td><code>StartColumn</code></td>
+<td>integer</td>
+<td>从 0 开始的起始列。</td>
+</tr>
+<tr>
+<td><code>EndLine</code></td>
+<td>integer</td>
+<td>从 1 开始的结束行。</td>
+</tr>
+<tr>
+<td><code>Metrics</code></td>
+<td>object</td>
+<td>见 <a href="#complexitymetrics-object"><code>ComplexityMetrics</code></a>。</td>
+</tr>
+<tr>
+<td><code>RiskLevel</code></td>
+<td>string</td>
+<td>取值：<code>low</code>、<code>medium</code>、<code>high</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="complexitymetrics"><code>ComplexityMetrics</code> 对象<a class="headerlink" href="#complexitymetrics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Complexity</code></td>
+<td>integer</td>
+<td>McCabe 圈复杂度。</td>
+</tr>
+<tr>
+<td><code>CognitiveComplexity</code></td>
+<td>integer</td>
+<td>认知复杂度（SonarQube 风格）。</td>
+</tr>
+<tr>
+<td><code>Nodes</code></td>
+<td>integer</td>
+<td>CFG 节点数。</td>
+</tr>
+<tr>
+<td><code>Edges</code></td>
+<td>integer</td>
+<td>CFG 边数。</td>
+</tr>
+<tr>
+<td><code>NestingDepth</code></td>
+<td>integer</td>
+<td>最大嵌套深度。</td>
+</tr>
+<tr>
+<td><code>IfStatements</code></td>
+<td>integer</td>
+<td><code>if</code> 语句数。</td>
+</tr>
+<tr>
+<td><code>LoopStatements</code></td>
+<td>integer</td>
+<td><code>for</code>/<code>while</code> 循环数。</td>
+</tr>
+<tr>
+<td><code>ExceptionHandlers</code></td>
+<td>integer</td>
+<td><code>except</code> 子句数。</td>
+</tr>
+<tr>
+<td><code>SwitchCases</code></td>
+<td>integer</td>
+<td><code>match</code> 分支数（Python 3.10+）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="summary-complexitysummary"><code>Summary</code> 对象（<code>ComplexitySummary</code>）<a class="headerlink" href="#summary-complexitysummary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TotalFunctions</code></td>
+<td>integer</td>
+<td>分析的函数总数。</td>
+</tr>
+<tr>
+<td><code>AverageComplexity</code></td>
+<td>number</td>
+<td>所有函数 <code>Complexity</code> 的算术平均值。</td>
+</tr>
+<tr>
+<td><code>MaxComplexity</code></td>
+<td>integer</td>
+<td>观测到的最高复杂度。</td>
+</tr>
+<tr>
+<td><code>MinComplexity</code></td>
+<td>integer</td>
+<td>观测到的最低复杂度。</td>
+</tr>
+<tr>
+<td><code>FilesAnalyzed</code></td>
+<td>integer</td>
+<td>贡献了至少一个函数的文件数。</td>
+</tr>
+<tr>
+<td><code>LowRiskFunctions</code></td>
+<td>integer</td>
+<td><code>RiskLevel = low</code> 的函数数。</td>
+</tr>
+<tr>
+<td><code>MediumRiskFunctions</code></td>
+<td>integer</td>
+<td><code>RiskLevel = medium</code> 的函数数。</td>
+</tr>
+<tr>
+<td><code>HighRiskFunctions</code></td>
+<td>integer</td>
+<td><code>RiskLevel = high</code> 的函数数。</td>
+</tr>
+<tr>
+<td><code>ComplexityDistribution</code></td>
+<td>object</td>
+<td>按复杂度区间（字符串）到数量（整数）的直方图，或 <code>null</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="raw_metrics-rawmetrics"><code>raw_metrics[]</code> 元素（<code>RawMetrics</code>）<a class="headerlink" href="#raw_metrics-rawmetrics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file_path</code></td>
+<td>string</td>
+<td>源文件路径。</td>
+</tr>
+<tr>
+<td><code>sloc</code></td>
+<td>integer</td>
+<td>源代码行数（非空行、非注释行）。</td>
+</tr>
+<tr>
+<td><code>lloc</code></td>
+<td>integer</td>
+<td>逻辑代码行数。</td>
+</tr>
+<tr>
+<td><code>comment_lines</code></td>
+<td>integer</td>
+<td>包含注释的行数。</td>
+</tr>
+<tr>
+<td><code>docstring_lines</code></td>
+<td>integer</td>
+<td>文档字符串内的行数。</td>
+</tr>
+<tr>
+<td><code>blank_lines</code></td>
+<td>integer</td>
+<td>空行或仅含空白的行数。</td>
+</tr>
+<tr>
+<td><code>total_lines</code></td>
+<td>integer</td>
+<td>物理总行数。</td>
+</tr>
+<tr>
+<td><code>comment_ratio</code></td>
+<td>number</td>
+<td><code>(comment_lines + docstring_lines) / total_lines</code>，<code>0</code>–<code>1</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dead_code"><code>dead_code</code> 对象<a class="headerlink" href="#dead_code" title="Permanent link">&para;</a></h2>
+<p>对应 <code>domain.DeadCodeResponse</code>。全部使用 snake_case 字段名。</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="cm">/* FileDeadCode array */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* DeadCodeSummary */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;warnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">&quot;generated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="files-filedeadcode"><code>files[]</code> 元素（<code>FileDeadCode</code>）<a class="headerlink" href="#files-filedeadcode" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file_path</code></td>
+<td>string</td>
+<td>源文件路径。</td>
+</tr>
+<tr>
+<td><code>functions</code></td>
+<td>array</td>
+<td>每个函数的结果（见下文）。</td>
+</tr>
+<tr>
+<td><code>total_findings</code></td>
+<td>integer</td>
+<td>此文件中所有函数的发现总数。</td>
+</tr>
+<tr>
+<td><code>total_functions</code></td>
+<td>integer</td>
+<td>此文件中分析的函数数。</td>
+</tr>
+<tr>
+<td><code>affected_functions</code></td>
+<td>integer</td>
+<td>至少有一个发现的函数数。</td>
+</tr>
+<tr>
+<td><code>dead_code_ratio</code></td>
+<td>number</td>
+<td>死代码块 / 总块数，<code>0</code>–<code>1</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="filesfunctions-functiondeadcode"><code>files[].functions[]</code> 元素（<code>FunctionDeadCode</code>）<a class="headerlink" href="#filesfunctions-functiondeadcode" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>函数名。</td>
+</tr>
+<tr>
+<td><code>file_path</code></td>
+<td>string</td>
+<td>源文件路径。</td>
+</tr>
+<tr>
+<td><code>findings</code></td>
+<td>array</td>
+<td>此函数中的发现（见下文）。</td>
+</tr>
+<tr>
+<td><code>total_blocks</code></td>
+<td>integer</td>
+<td>函数中的 CFG 块总数。</td>
+</tr>
+<tr>
+<td><code>dead_blocks</code></td>
+<td>integer</td>
+<td>不可达的 CFG 块数。</td>
+</tr>
+<tr>
+<td><code>reachable_ratio</code></td>
+<td>number</td>
+<td><code>(total_blocks - dead_blocks) / total_blocks</code>，<code>0</code>–<code>1</code>。</td>
+</tr>
+<tr>
+<td><code>critical_count</code></td>
+<td>integer</td>
+<td>严重性为 <code>critical</code> 的发现数。</td>
+</tr>
+<tr>
+<td><code>warning_count</code></td>
+<td>integer</td>
+<td>严重性为 <code>warning</code> 的发现数。</td>
+</tr>
+<tr>
+<td><code>info_count</code></td>
+<td>integer</td>
+<td>严重性为 <code>info</code> 的发现数。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="filesfunctionsfindings-deadcodefinding"><code>files[].functions[].findings[]</code> 元素（<code>DeadCodeFinding</code>）<a class="headerlink" href="#filesfunctionsfindings-deadcodefinding" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>location</code></td>
+<td>object</td>
+<td>见 <a href="#deadcodelocation-object"><code>DeadCodeLocation</code></a>。</td>
+</tr>
+<tr>
+<td><code>function_name</code></td>
+<td>string</td>
+<td>所在函数名。</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>string</td>
+<td>死代码片段。</td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td>string</td>
+<td>分类 — 见下方枚举。</td>
+</tr>
+<tr>
+<td><code>severity</code></td>
+<td>string</td>
+<td>取值：<code>critical</code>、<code>warning</code>、<code>info</code>。</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>人类可读的描述。</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>array of string | absent</td>
+<td>周围的源代码行。使用 <code>--show-context</code> 时存在。</td>
+</tr>
+<tr>
+<td><code>block_id</code></td>
+<td>string | absent</td>
+<td>CFG 块标识符。</td>
+</tr>
+</tbody>
+</table>
+<p><code>reason</code> 枚举值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>after_return</code></td>
+<td><code>return</code> 语句之后的代码。</td>
+</tr>
+<tr>
+<td><code>after_break</code></td>
+<td><code>break</code> 语句之后的代码。</td>
+</tr>
+<tr>
+<td><code>after_continue</code></td>
+<td><code>continue</code> 语句之后的代码。</td>
+</tr>
+<tr>
+<td><code>after_raise</code></td>
+<td><code>raise</code> 语句之后的代码。</td>
+</tr>
+<tr>
+<td><code>unreachable_branch</code></td>
+<td>永远不会执行的条件分支。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deadcodelocation"><code>DeadCodeLocation</code> 对象<a class="headerlink" href="#deadcodelocation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file_path</code></td>
+<td>string</td>
+<td>源文件路径。</td>
+</tr>
+<tr>
+<td><code>start_line</code></td>
+<td>integer</td>
+<td>从 1 开始的起始行。</td>
+</tr>
+<tr>
+<td><code>end_line</code></td>
+<td>integer</td>
+<td>从 1 开始的结束行。</td>
+</tr>
+<tr>
+<td><code>start_column</code></td>
+<td>integer</td>
+<td>从 0 开始的起始列。</td>
+</tr>
+<tr>
+<td><code>end_column</code></td>
+<td>integer</td>
+<td>从 0 开始的结束列。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="summary-deadcodesummary"><code>summary</code> 对象（<code>DeadCodeSummary</code>）<a class="headerlink" href="#summary-deadcodesummary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>total_files</code></td>
+<td>integer</td>
+<td>分析的文件数。</td>
+</tr>
+<tr>
+<td><code>total_functions</code></td>
+<td>integer</td>
+<td>分析的函数数。</td>
+</tr>
+<tr>
+<td><code>total_findings</code></td>
+<td>integer</td>
+<td>所有文件的发现总数。</td>
+</tr>
+<tr>
+<td><code>files_with_dead_code</code></td>
+<td>integer</td>
+<td>至少有一个发现的文件数。</td>
+</tr>
+<tr>
+<td><code>functions_with_dead_code</code></td>
+<td>integer</td>
+<td>至少有一个发现的函数数。</td>
+</tr>
+<tr>
+<td><code>critical_findings</code></td>
+<td>integer</td>
+<td>严重性为 <code>critical</code> 的发现数。</td>
+</tr>
+<tr>
+<td><code>warning_findings</code></td>
+<td>integer</td>
+<td>严重性为 <code>warning</code> 的发现数。</td>
+</tr>
+<tr>
+<td><code>info_findings</code></td>
+<td>integer</td>
+<td>严重性为 <code>info</code> 的发现数。</td>
+</tr>
+<tr>
+<td><code>findings_by_reason</code></td>
+<td>object | null</td>
+<td>按 <code>reason</code> 值分组的直方图。</td>
+</tr>
+<tr>
+<td><code>total_blocks</code></td>
+<td>integer</td>
+<td>所有函数的 CFG 块总数。</td>
+</tr>
+<tr>
+<td><code>dead_blocks</code></td>
+<td>integer</td>
+<td>所有函数中不可达的 CFG 块数。</td>
+</tr>
+<tr>
+<td><code>overall_dead_ratio</code></td>
+<td>number</td>
+<td><code>dead_blocks / total_blocks</code>，<code>0</code>–<code>1</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="clone"><code>clone</code> 对象<a class="headerlink" href="#clone" title="Permanent link">&para;</a></h2>
+<p>对应 <code>domain.CloneResponse</code>。全部使用 snake_case 字段名。</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;clones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="cm">/* Clone array, or null */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;clone_pairs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="cm">/* ClonePair array, or null */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;clone_groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="cm">/* CloneGroup array, or null */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;statistics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* CloneStatistics */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">&quot;duration_ms&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="clones-clone"><code>clones[]</code> 元素（<code>Clone</code>）<a class="headerlink" href="#clones-clone" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>克隆标识符，在响应内唯一。</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>integer</td>
+<td>克隆类型（整数）：<code>1</code>、<code>2</code>、<code>3</code> 或 <code>4</code>。</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td>object</td>
+<td>见 <a href="#clonelocation-object"><code>CloneLocation</code></a>。</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>string</td>
+<td>原始源代码文本。仅在设置 <code>--show-content</code> 时存在。</td>
+</tr>
+<tr>
+<td><code>hash</code></td>
+<td>string</td>
+<td>指纹哈希（算法取决于克隆类型）。</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>integer</td>
+<td>AST 节点数。</td>
+</tr>
+<tr>
+<td><code>line_count</code></td>
+<td>integer</td>
+<td>片段的行数。</td>
+</tr>
+<tr>
+<td><code>complexity</code></td>
+<td>integer</td>
+<td>片段的圈复杂度。</td>
+</tr>
+</tbody>
+</table>
+<p><code>type</code> 枚举值（整数）：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td>Type-1：除空白/注释外完全相同。</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Type-2：语法相同，但标识符/字面量不同。</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>Type-3：结构相似但有修改。</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>Type-4：语义等价，语法不同。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="clonelocation"><code>CloneLocation</code> 对象<a class="headerlink" href="#clonelocation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file_path</code></td>
+<td>string</td>
+<td>源文件路径。</td>
+</tr>
+<tr>
+<td><code>start_line</code></td>
+<td>integer</td>
+<td>从 1 开始的起始行。</td>
+</tr>
+<tr>
+<td><code>end_line</code></td>
+<td>integer</td>
+<td>从 1 开始的结束行。</td>
+</tr>
+<tr>
+<td><code>start_col</code></td>
+<td>integer</td>
+<td>从 0 开始的起始列。</td>
+</tr>
+<tr>
+<td><code>end_col</code></td>
+<td>integer</td>
+<td>从 0 开始的结束列。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="clone_pairs-clonepair"><code>clone_pairs[]</code> 元素（<code>ClonePair</code>）<a class="headerlink" href="#clone_pairs-clonepair" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>克隆对标识符。</td>
+</tr>
+<tr>
+<td><code>clone1</code></td>
+<td>object</td>
+<td>第一个克隆（<code>Clone</code> 对象）。</td>
+</tr>
+<tr>
+<td><code>clone2</code></td>
+<td>object</td>
+<td>第二个克隆（<code>Clone</code> 对象）。</td>
+</tr>
+<tr>
+<td><code>similarity</code></td>
+<td>number</td>
+<td>相似度评分，<code>0</code>–<code>1</code>。</td>
+</tr>
+<tr>
+<td><code>distance</code></td>
+<td>number</td>
+<td>树编辑距离（Type-3）或 <code>0</code>。</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>integer</td>
+<td>克隆类型（与 <code>clones[].type</code> 相同的枚举）。</td>
+</tr>
+<tr>
+<td><code>confidence</code></td>
+<td>number</td>
+<td>检测器置信度，<code>0</code>–<code>1</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="clone_groups-clonegroup"><code>clone_groups[]</code> 元素（<code>CloneGroup</code>）<a class="headerlink" href="#clone_groups-clonegroup" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>组标识符。</td>
+</tr>
+<tr>
+<td><code>clones</code></td>
+<td>array</td>
+<td>成员 <code>Clone</code> 对象。</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>integer</td>
+<td>主要克隆类型。</td>
+</tr>
+<tr>
+<td><code>similarity</code></td>
+<td>number</td>
+<td>代表性相似度，<code>0</code>–<code>1</code>。</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>integer</td>
+<td>成员数量（<code>len(clones)</code>）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="statistics-clonestatistics"><code>statistics</code> 对象（<code>CloneStatistics</code>）<a class="headerlink" href="#statistics-clonestatistics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>total_fragments</code></td>
+<td>integer</td>
+<td>提取的所有片段（函数、类等）。</td>
+</tr>
+<tr>
+<td><code>total_clones</code></td>
+<td>integer</td>
+<td>被分类为克隆的片段数。</td>
+</tr>
+<tr>
+<td><code>total_clone_pairs</code></td>
+<td>integer</td>
+<td>检测到的克隆对数。</td>
+</tr>
+<tr>
+<td><code>total_clone_groups</code></td>
+<td>integer</td>
+<td>组的数量。</td>
+</tr>
+<tr>
+<td><code>clones_by_type</code></td>
+<td>object | null</td>
+<td>按类型标签（<code>Type-1</code>…<code>Type-4</code>）到数量的映射。</td>
+</tr>
+<tr>
+<td><code>average_similarity</code></td>
+<td>number</td>
+<td>所有克隆对的平均相似度，<code>0</code>–<code>1</code>。</td>
+</tr>
+<tr>
+<td><code>lines_analyzed</code></td>
+<td>integer</td>
+<td>被考虑的源代码总行数。</td>
+</tr>
+<tr>
+<td><code>nodes_analyzed</code></td>
+<td>integer</td>
+<td>被考虑的 AST 节点总数。</td>
+</tr>
+<tr>
+<td><code>files_analyzed</code></td>
+<td>integer</td>
+<td>贡献了片段的不同文件数。</td>
+</tr>
+</tbody>
+</table>
+<p><code>CloneResponse</code> 的其他字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>duration_ms</code></td>
+<td>integer</td>
+<td>克隆检测耗时（毫秒）。</td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td>boolean</td>
+<td>正常完成时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>string | absent</td>
+<td><code>success=false</code> 时的错误信息。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cbo_1"><code>cbo</code> 对象<a class="headerlink" href="#cbo_1" title="Permanent link">&para;</a></h2>
+<p>对应 <code>domain.CBOResponse</code>。嵌套字段名为 Go PascalCase。</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;Classes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="cm">/* ClassCoupling array */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;Summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* CBOSummary */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">&quot;Warnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nt">&quot;GeneratedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">&quot;Config&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="classes-classcoupling"><code>Classes[]</code> 元素（<code>ClassCoupling</code>）<a class="headerlink" href="#classes-classcoupling" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Name</code></td>
+<td>string</td>
+<td>类名。</td>
+</tr>
+<tr>
+<td><code>FilePath</code></td>
+<td>string</td>
+<td>源文件路径。</td>
+</tr>
+<tr>
+<td><code>StartLine</code></td>
+<td>integer</td>
+<td>从 1 开始的起始行。</td>
+</tr>
+<tr>
+<td><code>EndLine</code></td>
+<td>integer</td>
+<td>从 1 开始的结束行。</td>
+</tr>
+<tr>
+<td><code>Metrics</code></td>
+<td>object</td>
+<td>见 <a href="#cbometrics-object"><code>CBOMetrics</code></a>。</td>
+</tr>
+<tr>
+<td><code>RiskLevel</code></td>
+<td>string</td>
+<td>取值：<code>low</code>、<code>medium</code>、<code>high</code>。</td>
+</tr>
+<tr>
+<td><code>IsAbstract</code></td>
+<td>boolean</td>
+<td>抽象类时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>BaseClasses</code></td>
+<td>array of string | null</td>
+<td>直接基类。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cbometrics"><code>CBOMetrics</code> 对象<a class="headerlink" href="#cbometrics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CouplingCount</code></td>
+<td>integer</td>
+<td>CBO 值：此类依赖的不同类数。</td>
+</tr>
+<tr>
+<td><code>InheritanceDependencies</code></td>
+<td>integer</td>
+<td>来自基类的依赖数。</td>
+</tr>
+<tr>
+<td><code>TypeHintDependencies</code></td>
+<td>integer</td>
+<td>来自类型注解的依赖数。</td>
+</tr>
+<tr>
+<td><code>InstantiationDependencies</code></td>
+<td>integer</td>
+<td>来自对象实例化的依赖数。</td>
+</tr>
+<tr>
+<td><code>AttributeAccessDependencies</code></td>
+<td>integer</td>
+<td>来自方法调用和属性访问的依赖数。</td>
+</tr>
+<tr>
+<td><code>ImportDependencies</code></td>
+<td>integer</td>
+<td>来自显式导入的依赖数。</td>
+</tr>
+<tr>
+<td><code>DependentClasses</code></td>
+<td>array of string | null</td>
+<td>耦合类的名称。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="summary-cbosummary"><code>Summary</code> 对象（<code>CBOSummary</code>）<a class="headerlink" href="#summary-cbosummary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TotalClasses</code></td>
+<td>integer</td>
+<td>分析的类总数。</td>
+</tr>
+<tr>
+<td><code>AverageCBO</code></td>
+<td>number</td>
+<td>平均 CBO。</td>
+</tr>
+<tr>
+<td><code>MaxCBO</code></td>
+<td>integer</td>
+<td>观测到的最大 CBO。</td>
+</tr>
+<tr>
+<td><code>MinCBO</code></td>
+<td>integer</td>
+<td>观测到的最小 CBO。</td>
+</tr>
+<tr>
+<td><code>ClassesAnalyzed</code></td>
+<td>integer</td>
+<td>具有有效指标的类数。</td>
+</tr>
+<tr>
+<td><code>FilesAnalyzed</code></td>
+<td>integer</td>
+<td>贡献了至少一个类的文件数。</td>
+</tr>
+<tr>
+<td><code>LowRiskClasses</code></td>
+<td>integer</td>
+<td>CBO ≤ 低阈值（默认 <code>3</code>）的类数。</td>
+</tr>
+<tr>
+<td><code>MediumRiskClasses</code></td>
+<td>integer</td>
+<td>低 &lt; CBO ≤ 中等阈值的类数。</td>
+</tr>
+<tr>
+<td><code>HighRiskClasses</code></td>
+<td>integer</td>
+<td>CBO &gt; 中等阈值（默认 <code>7</code>）的类数。</td>
+</tr>
+<tr>
+<td><code>CBODistribution</code></td>
+<td>object | null</td>
+<td>按区间标签到数量的直方图。</td>
+</tr>
+<tr>
+<td><code>MostCoupledClasses</code></td>
+<td>array | null</td>
+<td>按 CBO 排名的前 10 个类（<code>ClassCoupling</code>）。</td>
+</tr>
+<tr>
+<td><code>MostDependedUponClasses</code></td>
+<td>array of string | null</td>
+<td>入度最高的类。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lcom_1"><code>lcom</code> 对象<a class="headerlink" href="#lcom_1" title="Permanent link">&para;</a></h2>
+<p>对应 <code>domain.LCOMResponse</code>。嵌套字段名为 Go PascalCase。</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;Classes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="cm">/* ClassCohesion array */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;Summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* LCOMSummary */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">&quot;Warnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">&quot;GeneratedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">&quot;Config&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="classes-classcohesion"><code>Classes[]</code> 元素（<code>ClassCohesion</code>）<a class="headerlink" href="#classes-classcohesion" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Name</code></td>
+<td>string</td>
+<td>类名。</td>
+</tr>
+<tr>
+<td><code>FilePath</code></td>
+<td>string</td>
+<td>源文件路径。</td>
+</tr>
+<tr>
+<td><code>StartLine</code></td>
+<td>integer</td>
+<td>从 1 开始的起始行。</td>
+</tr>
+<tr>
+<td><code>EndLine</code></td>
+<td>integer</td>
+<td>从 1 开始的结束行。</td>
+</tr>
+<tr>
+<td><code>Metrics</code></td>
+<td>object</td>
+<td>见 <a href="#lcommetrics-object"><code>LCOMMetrics</code></a>。</td>
+</tr>
+<tr>
+<td><code>RiskLevel</code></td>
+<td>string</td>
+<td>取值：<code>low</code>、<code>medium</code>、<code>high</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lcommetrics"><code>LCOMMetrics</code> 对象<a class="headerlink" href="#lcommetrics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LCOM4</code></td>
+<td>integer</td>
+<td>方法-变量图中的连通分量数。</td>
+</tr>
+<tr>
+<td><code>TotalMethods</code></td>
+<td>integer</td>
+<td>类中的所有方法数。</td>
+</tr>
+<tr>
+<td><code>ExcludedMethods</code></td>
+<td>integer</td>
+<td>从 LCOM4 中排除的方法（<code>@classmethod</code>、<code>@staticmethod</code>）。</td>
+</tr>
+<tr>
+<td><code>InstanceVariables</code></td>
+<td>integer</td>
+<td>访问的不同 <code>self.x</code> 变量数。</td>
+</tr>
+<tr>
+<td><code>MethodGroups</code></td>
+<td>array of array of string | null</td>
+<td>按连通分量分组的方法名。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="summary-lcomsummary"><code>Summary</code> 对象（<code>LCOMSummary</code>）<a class="headerlink" href="#summary-lcomsummary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TotalClasses</code></td>
+<td>integer</td>
+<td>分析的类数。</td>
+</tr>
+<tr>
+<td><code>AverageLCOM</code></td>
+<td>number</td>
+<td>平均 LCOM4。</td>
+</tr>
+<tr>
+<td><code>MaxLCOM</code></td>
+<td>integer</td>
+<td>观测到的最大 LCOM4。</td>
+</tr>
+<tr>
+<td><code>MinLCOM</code></td>
+<td>integer</td>
+<td>观测到的最小 LCOM4。</td>
+</tr>
+<tr>
+<td><code>ClassesAnalyzed</code></td>
+<td>integer</td>
+<td>具有有效指标的类数。</td>
+</tr>
+<tr>
+<td><code>FilesAnalyzed</code></td>
+<td>integer</td>
+<td>贡献了至少一个类的文件数。</td>
+</tr>
+<tr>
+<td><code>LowRiskClasses</code></td>
+<td>integer</td>
+<td>LCOM4 ≤ 低阈值（默认 <code>2</code>）的类数。</td>
+</tr>
+<tr>
+<td><code>MediumRiskClasses</code></td>
+<td>integer</td>
+<td>低 &lt; LCOM4 ≤ 中等阈值的类数。</td>
+</tr>
+<tr>
+<td><code>HighRiskClasses</code></td>
+<td>integer</td>
+<td>LCOM4 &gt; 中等阈值（默认 <code>5</code>）的类数。</td>
+</tr>
+<tr>
+<td><code>LCOMDistribution</code></td>
+<td>object | null</td>
+<td>按区间标签到数量的直方图。</td>
+</tr>
+<tr>
+<td><code>LeastCohesiveClasses</code></td>
+<td>array | null</td>
+<td>按 LCOM4 排名的前 10 个类（<code>ClassCohesion</code>）。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system"><code>system</code> 对象<a class="headerlink" href="#system" title="Permanent link">&para;</a></h2>
+<p>对应 <code>domain.SystemAnalysisResponse</code>。嵌套字段名为 Go PascalCase。</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;DependencyAnalysis&quot;</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="cm">/* DependencyAnalysisResult, or null */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;ArchitectureAnalysis&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ArchitectureAnalysisResult, or null */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">&quot;Summary&quot;</span><span class="p">:</span><span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="cm">/* SystemAnalysisSummary */</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">&quot;Issues&quot;</span><span class="p">:</span><span class="w">               </span><span class="p">[</span><span class="w"> </span><span class="cm">/* SystemIssue array */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nt">&quot;Recommendations&quot;</span><span class="p">:</span><span class="w">      </span><span class="p">[</span><span class="w"> </span><span class="cm">/* SystemRecommendation array */</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">&quot;Warnings&quot;</span><span class="p">:</span><span class="w">             </span><span class="p">[</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nt">&quot;Errors&quot;</span><span class="p">:</span><span class="w">               </span><span class="p">[</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="nt">&quot;GeneratedAt&quot;</span><span class="p">:</span><span class="w">          </span><span class="s2">&quot;0001-01-01T00:00:00Z&quot;</span><span class="p">,</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="nt">&quot;Duration&quot;</span><span class="p">:</span><span class="w">             </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="w">              </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">  </span><span class="nt">&quot;Config&quot;</span><span class="p">:</span><span class="w">               </span><span class="kc">null</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="summary-systemanalysissummary"><code>Summary</code> 对象（<code>SystemAnalysisSummary</code>）<a class="headerlink" href="#summary-systemanalysissummary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TotalModules</code></td>
+<td>integer</td>
+<td>分析的模块总数。</td>
+</tr>
+<tr>
+<td><code>TotalPackages</code></td>
+<td>integer</td>
+<td>包总数。</td>
+</tr>
+<tr>
+<td><code>TotalDependencies</code></td>
+<td>integer</td>
+<td>依赖边总数。</td>
+</tr>
+<tr>
+<td><code>ProjectRoot</code></td>
+<td>string</td>
+<td>项目根目录。</td>
+</tr>
+<tr>
+<td><code>OverallQualityScore</code></td>
+<td>number</td>
+<td>综合质量评分，<code>0</code>–<code>100</code>。</td>
+</tr>
+<tr>
+<td><code>MaintainabilityScore</code></td>
+<td>number</td>
+<td>平均可维护性指数。</td>
+</tr>
+<tr>
+<td><code>ArchitectureScore</code></td>
+<td>number</td>
+<td>架构合规评分。</td>
+</tr>
+<tr>
+<td><code>ModularityScore</code></td>
+<td>number</td>
+<td>系统模块化评分。</td>
+</tr>
+<tr>
+<td><code>TechnicalDebtHours</code></td>
+<td>number</td>
+<td>估计的技术债务总时长（小时）。</td>
+</tr>
+<tr>
+<td><code>AverageCoupling</code></td>
+<td>number</td>
+<td>平均模块耦合度。</td>
+</tr>
+<tr>
+<td><code>AverageInstability</code></td>
+<td>number</td>
+<td>平均不稳定性（I）。</td>
+</tr>
+<tr>
+<td><code>CyclicDependencies</code></td>
+<td>integer</td>
+<td>参与循环的模块数。</td>
+</tr>
+<tr>
+<td><code>ArchitectureViolations</code></td>
+<td>integer</td>
+<td>架构规则违规数。</td>
+</tr>
+<tr>
+<td><code>HighRiskModules</code></td>
+<td>integer</td>
+<td>标记为高风险的模块数。</td>
+</tr>
+<tr>
+<td><code>CriticalIssues</code></td>
+<td>integer</td>
+<td>严重问题数。</td>
+</tr>
+<tr>
+<td><code>RefactoringCandidates</code></td>
+<td>integer</td>
+<td>需要重构的模块数。</td>
+</tr>
+<tr>
+<td><code>ArchitectureImprovements</code></td>
+<td>integer</td>
+<td>建议的架构改进数。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dependencyanalysis"><code>DependencyAnalysis</code> 对象<a class="headerlink" href="#dependencyanalysis" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TotalModules</code></td>
+<td>integer</td>
+<td>依赖图中的模块总数。</td>
+</tr>
+<tr>
+<td><code>TotalDependencies</code></td>
+<td>integer</td>
+<td>边总数。</td>
+</tr>
+<tr>
+<td><code>RootModules</code></td>
+<td>array of string</td>
+<td>没有出向依赖的模块。</td>
+</tr>
+<tr>
+<td><code>LeafModules</code></td>
+<td>array of string</td>
+<td>没有入向依赖的模块。</td>
+</tr>
+<tr>
+<td><code>ModuleMetrics</code></td>
+<td>object</td>
+<td>模块名到 <code>ModuleDependencyMetrics</code> 的映射。</td>
+</tr>
+<tr>
+<td><code>DependencyMatrix</code></td>
+<td>object</td>
+<td>模块到模块到布尔值的映射。</td>
+</tr>
+<tr>
+<td><code>CircularDependencies</code></td>
+<td>object</td>
+<td>循环检测结果；包含 <code>Cycles</code>（数组）和 <code>TotalCycles</code>（整数）。</td>
+</tr>
+<tr>
+<td><code>CouplingAnalysis</code></td>
+<td>object</td>
+<td>每模块耦合指标：<code>Ca</code>、<code>Ce</code>、<code>Instability</code>、<code>Abstractness</code>、<code>Distance</code>。</td>
+</tr>
+<tr>
+<td><code>LongestChains</code></td>
+<td>array</td>
+<td><code>DependencyPath</code> 对象数组。</td>
+</tr>
+<tr>
+<td><code>MaxDepth</code></td>
+<td>integer</td>
+<td>最大依赖深度。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="moduledependencymetrics"><code>ModuleDependencyMetrics</code> 对象<a class="headerlink" href="#moduledependencymetrics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ModuleName</code></td>
+<td>string</td>
+<td>完全限定模块名。</td>
+</tr>
+<tr>
+<td><code>Package</code></td>
+<td>string</td>
+<td>父包。</td>
+</tr>
+<tr>
+<td><code>FilePath</code></td>
+<td>string</td>
+<td>源文件路径。</td>
+</tr>
+<tr>
+<td><code>IsPackage</code></td>
+<td>boolean</td>
+<td>如果是包（有 <code>__init__.py</code>）则为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>LinesOfCode</code></td>
+<td>integer</td>
+<td>代码总行数。</td>
+</tr>
+<tr>
+<td><code>FunctionCount</code></td>
+<td>integer</td>
+<td>函数数量。</td>
+</tr>
+<tr>
+<td><code>ClassCount</code></td>
+<td>integer</td>
+<td>类数量。</td>
+</tr>
+<tr>
+<td><code>AbstractClassCount</code></td>
+<td>integer</td>
+<td>抽象类数量。</td>
+</tr>
+<tr>
+<td><code>PublicInterface</code></td>
+<td>array of string</td>
+<td><code>__all__</code> 中或顶级公共名称。</td>
+</tr>
+<tr>
+<td><code>AfferentCoupling</code></td>
+<td>integer</td>
+<td>Ca — 依赖此模块的模块数。</td>
+</tr>
+<tr>
+<td><code>EfferentCoupling</code></td>
+<td>integer</td>
+<td>Ce — 此模块依赖的模块数。</td>
+</tr>
+<tr>
+<td><code>Instability</code></td>
+<td>number</td>
+<td><code>I = Ce / (Ca + Ce)</code>，<code>0</code>–<code>1</code>。</td>
+</tr>
+<tr>
+<td><code>Abstractness</code></td>
+<td>number</td>
+<td>A — 抽象类 / 总类数，<code>0</code>–<code>1</code>。</td>
+</tr>
+<tr>
+<td><code>Distance</code></td>
+<td>number</td>
+<td><code>D = |A + I - 1|</code>，<code>0</code>–<code>1</code>。与主序列的距离。</td>
+</tr>
+<tr>
+<td><code>Maintainability</code></td>
+<td>number</td>
+<td>可维护性指数，<code>0</code>–<code>100</code>。</td>
+</tr>
+<tr>
+<td><code>TechnicalDebt</code></td>
+<td>number</td>
+<td>估计的技术债务（小时）。</td>
+</tr>
+<tr>
+<td><code>RiskLevel</code></td>
+<td>string</td>
+<td>取值：<code>low</code>、<code>medium</code>、<code>high</code>。</td>
+</tr>
+<tr>
+<td><code>DirectDependencies</code></td>
+<td>array of string</td>
+<td>直接依赖。</td>
+</tr>
+<tr>
+<td><code>TransitiveDependencies</code></td>
+<td>array of string</td>
+<td>所有传递依赖。</td>
+</tr>
+<tr>
+<td><code>Dependents</code></td>
+<td>array of string</td>
+<td>依赖此模块的模块。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="circulardependencyanalysis"><code>CircularDependencyAnalysis</code> 对象<a class="headerlink" href="#circulardependencyanalysis" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HasCircularDependencies</code></td>
+<td>boolean</td>
+<td>存在循环时为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>TotalCycles</code></td>
+<td>integer</td>
+<td>循环数量。</td>
+</tr>
+<tr>
+<td><code>TotalModulesInCycles</code></td>
+<td>integer</td>
+<td>涉及循环的模块数。</td>
+</tr>
+<tr>
+<td><code>CircularDependencies</code></td>
+<td>array</td>
+<td><code>CircularDependency</code> 对象数组。</td>
+</tr>
+<tr>
+<td><code>CycleBreakingSuggestions</code></td>
+<td>array of string</td>
+<td>打破循环的建议。</td>
+</tr>
+<tr>
+<td><code>CoreInfrastructure</code></td>
+<td>array of string</td>
+<td>出现在多个循环中的模块。</td>
+</tr>
+</tbody>
+</table>
+<p><code>CircularDependency.Severity</code> 枚举值：<code>low</code>、<code>medium</code>、<code>high</code>、<code>critical</code>。</p>
+<h3 id="couplinganalysis"><code>CouplingAnalysis</code> 对象<a class="headerlink" href="#couplinganalysis" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AverageCoupling</code></td>
+<td>number</td>
+<td>跨模块的平均耦合度。</td>
+</tr>
+<tr>
+<td><code>CouplingDistribution</code></td>
+<td>object</td>
+<td>耦合值（整数键）到数量的映射。</td>
+</tr>
+<tr>
+<td><code>HighlyCoupledModules</code></td>
+<td>array of string</td>
+<td>高耦合模块。</td>
+</tr>
+<tr>
+<td><code>LooselyCoupledModules</code></td>
+<td>array of string</td>
+<td>低耦合模块。</td>
+</tr>
+<tr>
+<td><code>AverageInstability</code></td>
+<td>number</td>
+<td>平均不稳定性。</td>
+</tr>
+<tr>
+<td><code>StableModules</code></td>
+<td>array of string</td>
+<td>低不稳定性模块。</td>
+</tr>
+<tr>
+<td><code>InstableModules</code></td>
+<td>array of string</td>
+<td>高不稳定性模块。</td>
+</tr>
+<tr>
+<td><code>MainSequenceDeviation</code></td>
+<td>number</td>
+<td>与主序列的平均距离，<code>0</code>–<code>1</code>。</td>
+</tr>
+<tr>
+<td><code>ZoneOfPain</code></td>
+<td>array of string</td>
+<td>稳定 + 具体的模块。</td>
+</tr>
+<tr>
+<td><code>ZoneOfUselessness</code></td>
+<td>array of string</td>
+<td>不稳定 + 抽象的模块。</td>
+</tr>
+<tr>
+<td><code>MainSequence</code></td>
+<td>array of string</td>
+<td>位置良好的模块。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="architectureanalysis"><code>ArchitectureAnalysis</code> 对象<a class="headerlink" href="#architectureanalysis" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ComplianceScore</code></td>
+<td>number</td>
+<td>合规评分，<code>0</code>–<code>1</code>。<code>1.0</code> = 完全合规。</td>
+</tr>
+<tr>
+<td><code>TotalViolations</code></td>
+<td>integer</td>
+<td>发现的违规总数。</td>
+</tr>
+<tr>
+<td><code>TotalRules</code></td>
+<td>integer</td>
+<td>评估的规则总数。</td>
+</tr>
+<tr>
+<td><code>LayerAnalysis</code></td>
+<td>object | null</td>
+<td>分层分析结果。</td>
+</tr>
+<tr>
+<td><code>CohesionAnalysis</code></td>
+<td>object | null</td>
+<td>包内聚性分析。</td>
+</tr>
+<tr>
+<td><code>ResponsibilityAnalysis</code></td>
+<td>object | null</td>
+<td>单一职责原则违规分析。</td>
+</tr>
+<tr>
+<td><code>Violations</code></td>
+<td>array</td>
+<td><code>ArchitectureViolation</code> 对象数组。</td>
+</tr>
+<tr>
+<td><code>SeverityBreakdown</code></td>
+<td>object</td>
+<td>严重性到数量的映射。</td>
+</tr>
+<tr>
+<td><code>Recommendations</code></td>
+<td>array</td>
+<td><code>ArchitectureRecommendation</code> 对象数组。</td>
+</tr>
+<tr>
+<td><code>RefactoringTargets</code></td>
+<td>array of string</td>
+<td>需要重构的模块。</td>
+</tr>
+</tbody>
+</table>
+<p><code>ArchitectureViolation.Type</code> 枚举值：<code>layer</code>、<code>cycle</code>、<code>coupling</code>、<code>responsibility</code>、<code>cohesion</code>。</p>
+<p><code>ArchitectureViolation.Severity</code> 枚举值：<code>info</code>、<code>warning</code>、<code>error</code>、<code>critical</code>。</p>
+<h2 id="suggestions"><code>suggestions</code> 数组<a class="headerlink" href="#suggestions" title="Permanent link">&para;</a></h2>
+<p><code>Suggestion</code> 对象数组。使用 snake_case 字段名。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必需</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>category</code></td>
+<td>string</td>
+<td>是</td>
+<td>见下方枚举。</td>
+</tr>
+<tr>
+<td><code>severity</code></td>
+<td>string</td>
+<td>是</td>
+<td>取值：<code>critical</code>、<code>warning</code>、<code>info</code>。</td>
+</tr>
+<tr>
+<td><code>effort</code></td>
+<td>string</td>
+<td>是</td>
+<td>取值：<code>easy</code>、<code>moderate</code>、<code>hard</code>。</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>是</td>
+<td>简短的人类可读标题。</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>是</td>
+<td>完整描述。</td>
+</tr>
+<tr>
+<td><code>steps</code></td>
+<td>array of string</td>
+<td>否</td>
+<td>可操作的步骤。为空时省略。</td>
+</tr>
+<tr>
+<td><code>file_path</code></td>
+<td>string</td>
+<td>否</td>
+<td>源文件引用。</td>
+</tr>
+<tr>
+<td><code>function</code></td>
+<td>string</td>
+<td>否</td>
+<td>函数名引用。</td>
+</tr>
+<tr>
+<td><code>class_name</code></td>
+<td>string</td>
+<td>否</td>
+<td>类名引用。</td>
+</tr>
+<tr>
+<td><code>start_line</code></td>
+<td>integer</td>
+<td>否</td>
+<td>从 1 开始的行引用。为 <code>0</code> 时省略。</td>
+</tr>
+<tr>
+<td><code>metric_value</code></td>
+<td>string</td>
+<td>否</td>
+<td>观测到的指标值（字符串形式）。</td>
+</tr>
+<tr>
+<td><code>threshold</code></td>
+<td>string</td>
+<td>否</td>
+<td>阈值（字符串形式）。</td>
+</tr>
+</tbody>
+</table>
+<p><code>category</code> 枚举值：<code>complexity</code>、<code>dead_code</code>、<code>clone</code>、<code>coupling</code>、<code>cohesion</code>、<code>dependency</code>、<code>architecture</code>。</p>
+<p>建议按优先级排序（严重性 x 工作量）。详见 <code>domain/suggestion.go</code> 中的确切排序函数。</p>
+<h2 id="csv">CSV 模式<a class="headerlink" href="#csv" title="Permanent link">&para;</a></h2>
+<p>CSV 输出通过 Go <code>encoding/csv</code> 包使用 RFC 4180 引用格式。</p>
+<h3 id="pyscn-analyze-csv"><code>pyscn analyze --csv</code><a class="headerlink" href="#pyscn-analyze-csv" title="Permanent link">&para;</a></h3>
+<p>仅输出摘要。两列。纯 UTF-8 字符串，无类型注解。</p>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Metric</code></td>
+<td>string</td>
+<td>指标名称。</td>
+</tr>
+<tr>
+<td><code>Value</code></td>
+<td>string</td>
+<td>指标值（字符串）。</td>
+</tr>
+</tbody>
+</table>
+<p>行（固定顺序）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Metric,Value
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Health Score,&lt;integer&gt;
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Grade,&lt;A|B|C|D|F|N/A&gt;
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Total Files,&lt;integer&gt;
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Analyzed Files,&lt;integer&gt;
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Average Complexity,&lt;float with 2 decimals&gt;
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>High Complexity Count,&lt;integer&gt;
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Dead Code Count,&lt;integer&gt;
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Critical Dead Code,&lt;integer&gt;
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>Unique Fragments,&lt;integer&gt;
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>Clone Groups,&lt;integer&gt;
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>Code Duplication,&lt;float with 2 decimals&gt;
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>Total Classes Analyzed,&lt;integer&gt;
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>High Coupling (CBO) Classes,&lt;integer&gt;
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>Average CBO,&lt;float with 2 decimals&gt;
+</span></code></pre></div>
+<p>pyscn 目前不通过 CLI 公开每个分析器的 CSV 模式 — <code>--csv</code> 仅生成上述摘要。如需每个发现的详细信息，请使用 <code>--json</code> 或 <code>--yaml</code>。</p>
+<h2 id="_12">时间戳和版本信息<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>格式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>generated_at</code></td>
+<td>RFC 3339 (ISO 8601)</td>
+<td><code>time.Time</code> 序列化；可能包含亚秒精度和时区偏移。</td>
+</tr>
+<tr>
+<td><code>duration_ms</code></td>
+<td>integer（毫秒）</td>
+<td>实际分析耗时。</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>string（语义版本号）</td>
+<td>pyscn 发布版本，例如 <code>"0.14.0"</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_13">调用各格式<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p><code>pyscn analyze</code> 接受 <code>--json</code>、<code>--yaml</code>、<code>--csv</code>、<code>--html</code>（默认）之一。没有 <code>--format</code> 标志，也没有独立的 <code>complexity</code> / <code>deadcode</code> / <code>clone</code> / <code>deps</code> 子命令。通过 <code>--select</code> 运行单个分析器。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pyscn<span class="w"> </span>analyze<span class="w"> </span>--json<span class="w"> </span>src/
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>pyscn<span class="w"> </span>analyze<span class="w"> </span>--yaml<span class="w"> </span>src/
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>pyscn<span class="w"> </span>analyze<span class="w"> </span>--csv<span class="w">  </span>src/
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>pyscn<span class="w"> </span>analyze<span class="w"> </span>--html<span class="w"> </span>src/<span class="w">    </span><span class="c1"># default</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>pyscn<span class="w"> </span>analyze<span class="w"> </span>--json<span class="w"> </span>--select<span class="w"> </span>complexity<span class="w"> </span>src/
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>pyscn<span class="w"> </span>analyze<span class="w"> </span>--csv<span class="w">  </span>--select<span class="w"> </span>deadcode<span class="w">   </span>src/
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>pyscn<span class="w"> </span>analyze<span class="w"> </span>--yaml<span class="w"> </span>--select<span class="w"> </span>clones<span class="w">     </span>src/
+</span></code></pre></div>
+<p>输出文件保存在 <code>.pyscn/reports/</code> 中；路径和文件名详情见<a href="../">输出格式</a>。</p>
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../html-report/">HTML 报告</a> — HTML 输出规范。</li>
+<li><a href="../health-score/">健康评分</a> — <code>summary.health_score</code> 和分类评分的推导。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024–2026 ludo-technologies
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ludo-technologies/pyscn" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/pyscn/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.indexes", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit", "content.tooltips", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
